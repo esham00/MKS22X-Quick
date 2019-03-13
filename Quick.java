@@ -4,15 +4,16 @@ public class Quick {
 	Random rand = new Random();
 	int a = Math.abs(rand.nextInt()%(end+1));
 	// System.out.println(data[a]);
-	int old = data[0];
-	data[0] = data[a];
+	int old = data[start];
+	int index = start;
+	data[index] = data[a];
 	data[a] = old;
-	if (start == 0 && end != 0) {
-	    start = 1;
+	if (end != start) {
+	    start++;
 	}
 	while(start < end) {
 	    //System.out.println("old start, old end: " + start + ", " + end);
-	    if (data[start] < data[0]) {
+	    if (data[start] < data[index]) {
 		start++;
 	    } else {
 		old = data[start];
@@ -22,17 +23,24 @@ public class Quick {
 	    }
 	    //System.out.println("new start, new end: " + start + ", " + end);
 	}
-	if (data[start] > data[0]) {
+	if (data[start] > data[index]) {
 	    old = data[start-1];
-	    data[start-1] = data[0];
-	    data[0] = old;
+	    data[start-1] = data[index];
+	    data[index] = old;
 	    return start-1;
 	} else {
 	    old = data[start];
-	    data[start] = data[0];
-	    data[0] = old;
+	    data[start] = data[index];
+	    data[index] = old;
 	    return start;
        }
+    }
+    public static String toString(int[] data){
+	String output = "";
+	for(int i = 0; i < data.length; i++) {
+	    output += data[i] + " ";
+	}
+	return output;
     }
     public static String toString(int[] data, int start, int end) {
 	String output = "";
@@ -62,16 +70,28 @@ public class Quick {
 	return data[value];
     }
     public static void quickSort(int[] data, int start, int end) {
+	if (start >= end) {
+	    return;
+	} else {
+	    int pivot = partition(data, start, end);
+	    //System.out.println("Start: " + start + ", End: " + end);
+	    //System.out.println(toString(data, start, end));
+	    //System.out.println(toString(data, start, end));
+	    quickSort(data, start, pivot-1);
+	    quickSort(data, pivot + 1, end);
+	}
     }
     public static void main(String[] args) {
-    	int[] data = new int[] {4,3,8, 999, 2,1,6,5,7, 999, 10};
+    	int[] data = new int[] {4,3,8, 2,1,6,5,7};
     	// System.out.println(partition(data, 1, data.length-1));
     	// System.out.println(toString(data));
-    	System.out.println(quickSelect(data, 3));
+    	//System.out.println(quickSelect(data, 3));
     	//System.out.println(partition(data, 0, data.length-1));
-        System.out.println(toString(data,0,data.length-1));
+        //System.out.println(toString(data,0,data.length-1));
     	//System.out.println(quickSelect(data, 5));
         //System.out.println(quickSelect(data, 2));
         //System.out.println(toString(data));
+	quickSort(data, 0, data.length-1);
+	System.out.println(toString(data));
     }
 }
