@@ -3,7 +3,7 @@ public class Quick {
     public static int partition(int[] data, int start, int end) {
 	Random rand = new Random();
 	int a = Math.abs(rand.nextInt()%(end+1));
-	System.out.println(data[a]);
+	// System.out.println(data[a]);
 	int old = data[0];
 	data[0] = data[a];
 	data[a] = old;
@@ -44,9 +44,9 @@ public class Quick {
     public static int quickSelect(int[] data, int k) {
 	int start = 0;
 	int end = data.length-1;
-	System.out.println(toString(data, 0, data.length-1));
+	// System.out.println(toString(data, 0, data.length-1));
 	int value = partition(data, start, end);
-	System.out.println(toString(data, 0, data.length-1));
+	// System.out.println(toString(data, 0, data.length-1));
 	while (value != k) {
 	    if (value < k) {
 		start = value;
@@ -54,8 +54,8 @@ public class Quick {
 		end = value;
 	    }
 	    value = partition(data, start, end);
-	    System.out.println(data[start] + " , " + data[end]);
-	    System.out.println(toString(data, 0, data.length-1));
+	    // System.out.println(data[start] + " , " + data[end]);
+	    // System.out.println(toString(data, 0, data.length-1));
 
 	}
 	//System.out.println(k + " vs. " +  value);
