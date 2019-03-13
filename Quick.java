@@ -7,6 +7,9 @@ public class Quick {
 	int old = data[0];
 	data[0] = data[a];
 	data[a] = old;
+	if (start == 0 && end != 0) {
+	    start = 1;
+	}
 	while(start < end) {
 	    //System.out.println("old start, old end: " + start + ", " + end);
 	    if (data[start] < data[0]) {
@@ -83,7 +86,7 @@ public class Quick {
     public static void main(String[] args) {
         int[] data1 = {10, 80, 30, 90, 40, 50, 70};
         //System.out.println(Arrays.toString(data1));
-        int index1a = partition(data1, 1, 6);
+        int index1a = partition(data1, 0, 6);
         System.out.println("1a: " + test(data1, index1a,1,6));
         //System.out.println(Arrays.toString(data1) + " "+index1a+"\n");
         //System.out.println(Arrays.toString(data1));
@@ -139,17 +142,3 @@ public class Quick {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
