@@ -82,7 +82,7 @@ public class Quick {
 	}
     }
     public static void main(String[] args) {
-    	int[] data = new int[] {4,3,8, 2,1,6,5,7};
+    	int[] data = new int[] {4,6,3,8, 2, 999, 1,6,999,5,7};
     	// System.out.println(partition(data, 1, data.length-1));
     	// System.out.println(toString(data));
     	//System.out.println(quickSelect(data, 3));
