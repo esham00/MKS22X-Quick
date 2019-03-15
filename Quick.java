@@ -2,16 +2,18 @@ import java.util.*;
 public class Quick {
     public static int partition(int[] data, int start, int end) {
 	Random rand = new Random();
-	int a = Math.abs(rand.nextInt()%(end+1));
-	// System.out.println(data[a]);
+	int a = Math.abs(rand.nextInt()%(end - start+1))+ start;
+	//System.out.println(data[a]);
 	int old = data[start];
 	int index = start;
-	data[index] = data[a];
+	data[start] = data[a];
 	data[a] = old;
 	if (end != start) {
 	    start++;
 	}
+	System.out.println(data[index]);
 	while(start < end) {
+	    System.out.println(Arrays.toString(data));
 	    //System.out.println("old start, old end: " + start + ", " + end);
 	    if (data[start] < data[index]) {
 		start++;
@@ -27,11 +29,15 @@ public class Quick {
 	    old = data[start-1];
 	    data[start-1] = data[index];
 	    data[index] = old;
+	    	System.out.println(Arrays.toString(data));
+
 	    return start-1;
 	} else {
 	    old = data[start];
 	    data[start] = data[index];
 	    data[index] = old;
+	    //System.out.println(Arrays.toString(data));
+
 	    return start;
        }
     }
@@ -71,14 +77,17 @@ public class Quick {
     }
     public static void quickSort(int[] data, int start, int end) {
 	if (start >= end) {
+	    //System.out.println("Start: " + start + ", End: " + end);
+	    //System.out.println(toString(data,start,end));
 	    return;
 	} else {
+	    System.out.println("Start: " + start + ", End: " + end);
+	    System.out.println(toString(data,start,end));
 	    int pivot = partition(data, start, end);
-	    //System.out.println("Start: " + start + ", End: " + end);
 	    //System.out.println(toString(data, start, end));
 	    //System.out.println(toString(data, start, end));
 	    quickSort(data, start, pivot-1);
-	    quickSort(data, pivot + 1, end);
+	    quickSort(data, pivot+1, end);
 	}
     }
     public static void main(String[] args) {
@@ -92,6 +101,6 @@ public class Quick {
         //System.out.println(quickSelect(data, 2));
         //System.out.println(toString(data));
 	quickSort(data, 0, data.length-1);
-	System.out.println(toString(data));
+	System.out.println(Arrays.toString(data));
     }
 }
