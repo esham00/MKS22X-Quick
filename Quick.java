@@ -1,42 +1,43 @@
 import java.util.*;
 public class Quick {
+    //partition
     public static int partition(int[] data, int start, int end) {
+	//random
 	Random rand = new Random();
+	//generating random index
 	int a = Math.abs(rand.nextInt()%(end - start+1))+ start;
-	//System.out.println(data[a]);
+	//swapped chosen values
 	int old = data[start];
 	int index = start;
 	data[start] = data[a];
 	data[a] = old;
+	//adding 1 to the start so it would go onto the next value to compare
 	if (end != start) {
 	    start++;
 	}
-	//System.out.println(data[index]);
 	while(start < end) {
-	    // System.out.println(Arrays.toString(data));
-	    //System.out.println("old start, old end: " + start + ", " + end);
+	    //compare if chosen value is more than the comparison value move onto the next value
 	    if (data[start] < data[index]) {
 		start++;
 	    } else {
+		//otherwise swap places at the end
 		old = data[start];
 		data[start] = data[end];
 		data[end] = old;
 		end--;
 	    }
-	    //System.out.println("new start, new end: " + start + ", " + end);
 	}
+	//if the index at start is larger than the chosen value then swap indices with the index 1 before the start
 	if (data[start] > data[index]) {
 	    old = data[start-1];
 	    data[start-1] = data[index];
 	    data[index] = old;
-	    //System.out.println(Arrays.toString(data));
 	    return start-1;
 	} else {
+	    //otherwise swap indices 
 	    old = data[start];
 	    data[start] = data[index];
 	    data[index] = old;
-	    //System.out.println(Arrays.toString(data));
-
 	    return start;
        }
     }
@@ -54,37 +55,36 @@ public class Quick {
 	}
 	return output;
     }
+    //quickSelect
     public static int quickSelect(int[] data, int k) {
+	//start,end, index
 	int start = 0;
 	int end = data.length-1;
-	// System.out.println(toString(data, 0, data.length-1));
 	int value = partition(data, start, end);
-	// System.out.println(toString(data, 0, data.length-1));
+	//if the index is not k, then 
 	while (value != k) {
+	    //if the index is less than k then set start as the index
 	    if (value < k) {
 		start = value;
 	    } else {
+		//if the index is more than k then set end as the index
 		end = value;
 	    }
+	    //update index
 	    value = partition(data, start, end);
-	    // System.out.println(data[start] + " , " + data[end]);
-	    // System.out.println(toString(data, 0, data.length-1));
-
 	}
-	//System.out.println(k + " vs. " +  value);
+	//finally at index is the proper value
 	return data[value];
     }
+    //quicksort
     public static void quicksortH(int[] data, int start, int end) {
+	//if the start>= end return nothing
 	if (start >= end) {
-	    //System.out.println("Start: " + start + ", End: " + end);
-	    //System.out.println(toString(data,start,end));
 	    return;
 	} else {
-	    //System.out.println("Start: " + start + ", End: " + end);
-	    //System.out.println(toString(data,start,end));
+	    //set pivot as a random index
 	    int pivot = partition(data, start, end);
-	    //System.out.println(toString(data, start, end));
-	    //System.out.println(toString(data, start, end));
+	    //quicksort both sides of the pivot
 	    quicksortH(data, start, pivot-1);
 	    quicksortH(data, pivot+1, end);
 	}
