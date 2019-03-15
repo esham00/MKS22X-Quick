@@ -19,6 +19,15 @@ public class Quick {
 	    //compare if chosen value is more than the comparison value move onto the next value
 	    if (data[start] <  data[index]) {
 		start++;
+	    } else if (data[start] == data[index]) {
+		if (Math.abs(rand.nextInt()) % 2 == 1) {
+		    start++;
+		} else {
+		    old = data[start];
+		    data[start] = data[end];
+		    data[end] = old;
+		    end--;
+		}
 	    } else {
 		//otherwise swap places at the end
 		old = data[start];
@@ -92,8 +101,8 @@ public class Quick {
     public static void quicksort(int[] data) {
 	quicksortH(data, 0, data.length-1);
     }
-    // public static void main(String[] args) {
-    // 	//int[] data = new int[] {4,6,3,8, 2, 999, 1,6,999,5,7};
+     public static void main(String[] args) {
+       int[] data = new int[] {4,6,3,8, 2, 999, 1,6,999,5,7};
     // 	// System.out.println(partition(data, 1, data.length-1));
     // 	// System.out.println(toString(data));
     // 	//System.out.println(quickSelect(data, 3));
@@ -102,40 +111,40 @@ public class Quick {
     // 	//System.out.println(quickSelect(data, 5));
     //     //System.out.println(quickSelect(data, 2));
     //     //System.out.println(toString(data));
-    // 	//quickSort(data, 0, data.length-1);
-    // 	//System.out.println(Arrays.toString(data));
-    // 	System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
-    // 	int[]MAX_LIST = {1000000000,500,10};
-    // 	for(int MAX : MAX_LIST){
-    // 	    for(int size = 31250; size < 2000001; size*=2){
-    // 		long qtime=0;
-    // 		long btime=0;
-    // 		//average of 5 sorts.
-    // 		for(int trial = 0 ; trial <=5; trial++){
-    // 		    int []data1 = new int[size];
-    // 		    int []data2 = new int[size];
-    // 		    for(int i = 0; i < data1.length; i++){
-    // 			data1[i] = (int)(Math.random()*MAX);
-    // 			data2[i] = data1[i];
-    // 		    }
-    // 		    long t1,t2;
-    // 		    t1 = System.currentTimeMillis();
-    // 		    quicksort(data2);
-    // 		    t2 = System.currentTimeMillis();
-    // 		    qtime += t2 - t1;
-    // 		    t1 = System.currentTimeMillis();
-    // 		    Arrays.sort(data1);
-    // 		    t2 = System.currentTimeMillis();
-    // 		    btime+= t2 - t1;
-    // 		    if(!Arrays.equals(data1,data2)){
-    // 			System.out.println("FAIL TO SORT!");
-    // 			System.exit(0);
-    // 		    }
-    // 		}
-    // 		System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
-    // 	    }
-    // 	    System.out.println();
-    // 	}
-    // }
+    	quicksortH(data, 0, data.length-1);
+    	System.out.println(Arrays.toString(data));
+    	System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
+    	int[]MAX_LIST = {1000000000,500,10};
+    	for(int MAX : MAX_LIST){
+    	    for(int size = 31250; size < 2000001; size*=2){
+    		long qtime=0;
+    		long btime=0;
+    		//average of 5 sorts.
+    		for(int trial = 0 ; trial <=5; trial++){
+    		    int []data1 = new int[size];
+    		    int []data2 = new int[size];
+    		    for(int i = 0; i < data1.length; i++){
+    			data1[i] = (int)(Math.random()*MAX);
+    			data2[i] = data1[i];
+    		    }
+    		    long t1,t2;
+    		    t1 = System.currentTimeMillis();
+    		    quicksort(data2);
+    		    t2 = System.currentTimeMillis();
+    		    qtime += t2 - t1;
+    		    t1 = System.currentTimeMillis();
+    		    Arrays.sort(data1);
+    		    t2 = System.currentTimeMillis();
+    		    btime+= t2 - t1;
+    		    if(!Arrays.equals(data1,data2)){
+    			System.out.println("FAIL TO SORT!");
+    			System.exit(0);
+    		    }
+    		}
+    		System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+    	    }
+    	    System.out.println();
+    	}
+    }
 
 }
