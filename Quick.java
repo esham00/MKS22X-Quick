@@ -17,7 +17,7 @@ public class Quick {
 	}
 	while(start < end) {
 	    //compare if chosen value is more than the comparison value move onto the next value
-	    if (data[start] < data[index]) {
+	    if (data[start] <  data[index]) {
 		start++;
 	    } else {
 		//otherwise swap places at the end
@@ -56,7 +56,7 @@ public class Quick {
 	return output;
     }
     //quickSelect
-    public static int quickSelect(int[] data, int k) {
+    public static int quickselect(int[] data, int k) {
 	//start,end, index
 	int start = 0;
 	int end = data.length-1;
