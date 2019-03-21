@@ -171,125 +171,125 @@ public class Quick {
     // 	}
     // }
 
-     public static void main(String[] args) {
-       int[] data = new int[] {4,6,3,8, 2, 999, 1,6,999,5,7};
-    // 	// System.out.println(partition(data, 1, data.length-1));
-    // 	// System.out.println(toString(data));
-    // 	//System.out.println(quickSelect(data, 3));
-    // 	//System.out.println(partition(data, 0, data.length-1));
-    //     //System.out.println(toString(data,0,data.length-1));
-    // 	//System.out.println(quickSelect(data, 5));
-    //     //System.out.println(quickSelect(data, 2));
-    //     //System.out.println(toString(data));
-    	System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
-    	int[]MAX_LIST = {1000000000,500,10};
-    	for(int MAX : MAX_LIST){
-    	    for(int size = 31250; size < 2000001; size*=2){
-    		long qtime=0;
-    		long btime=0;
-    		//average of 5 sorts.
-    		for(int trial = 0 ; trial <=5; trial++){
-    		    int []data1 = new int[size];
-    		    int []data2 = new int[size];
-    		    for(int i = 0; i < data1.length; i++){
-    			data1[i] = (int)(Math.random()*MAX);
-    			data2[i] = data1[i];
-    		    }
-    		    long t1,t2;
-    		    t1 = System.currentTimeMillis();
-    		    quicksort(data2);
-    		    t2 = System.currentTimeMillis();
-    		    qtime += t2 - t1;
-    		    t1 = System.currentTimeMillis();
-    		    Arrays.sort(data1);
-    		    t2 = System.currentTimeMillis();
-    		    btime+= t2 - t1;
-    		    if(!Arrays.equals(data1,data2)){
-    			System.out.println("FAIL TO SORT!");
-    			System.exit(0);
-    		    }
+    // //  public static void main(String[] args) {
+    // //    int[] data = new int[] {4,6,3,8, 2, 999, 1,6,999,5,7};
+    // // // 	// System.out.println(partition(data, 1, data.length-1));
+    // // // 	// System.out.println(toString(data));
+    // // // 	//System.out.println(quickSelect(data, 3));
+    // // // 	//System.out.println(partition(data, 0, data.length-1));
+    // // //     //System.out.println(toString(data,0,data.length-1));
+    // // // 	//System.out.println(quickSelect(data, 5));
+    // // //     //System.out.println(quickSelect(data, 2));
+    // // //     //System.out.println(toString(data));
+    // // 	System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
+    // // 	int[]MAX_LIST = {1000000000,500,10};
+    // // 	for(int MAX : MAX_LIST){
+    // // 	    for(int size = 31250; size < 2000001; size*=2){
+    // // 		long qtime=0;
+    // // 		long btime=0;
+    // // 		//average of 5 sorts.
+    // // 		for(int trial = 0 ; trial <=5; trial++){
+    // // 		    int []data1 = new int[size];
+    // // 		    int []data2 = new int[size];
+    // // 		    for(int i = 0; i < data1.length; i++){
+    // // 			data1[i] = (int)(Math.random()*MAX);
+    // // 			data2[i] = data1[i];
+    // // 		    }
+    // // 		    long t1,t2;
+    // // 		    t1 = System.currentTimeMillis();
+    // // 		    quicksort(data2);
+    // // 		    t2 = System.currentTimeMillis();
+    // // 		    qtime += t2 - t1;
+    // // 		    t1 = System.currentTimeMillis();
+    // // 		    Arrays.sort(data1);
+    // // 		    t2 = System.currentTimeMillis();
+    // // 		    btime+= t2 - t1;
+    // // 		    if(!Arrays.equals(data1,data2)){
+    // // 			System.out.println("FAIL TO SORT!");
+    // // 			System.exit(0);
+    // // 		    }
+    // // 		}
+    // // 		System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+    // // 	    }
+    // // 	    System.out.println();
+    // // 	}
+    // // }
+    // // private static final int INCREASE = 0;
+    // // private static final int DECREASE = 1;
+    // // private static final int STANDARD = 2;
+    // // private static final int SMALL_RANGE = 3;
+
+    // // private static String name(int i){
+    // // 	if(i==INCREASE)return "Increassing";
+    // // 	if(i==DECREASE)return "Decreassing";
+    // // 	if(i==STANDARD)return "Normal Random";
+    // // 	if(i==SMALL_RANGE)return "Random with Few Values";
+    // // 	return "Error categorizing array";
+
+    // // }
+
+    // // private static int create(int min, int max){
+    // // 	return min + (int)(Math.random()*(max-min));
+    // // }
+
+    // // private static int[]makeArray(int size,int type){
+    // // 	int[]ans =new int[size];
+    // // 	if(type == STANDARD){
+    // // 	    for(int i = 0; i < size; i++){
+    // // 		ans[i]= create(-1000000,1000000);
+    // // 	    }
+    // // 	}
+    // // 	else if(type == INCREASE){
+    // // 	    int current = -5 * size;
+    // // 	    for(int i = 0; i < size; i++){
+    // // 		ans[i]= create(current,current + 10);
+    // // 		current += 10;
+    // // 	    }
+    // // 	}
+    // // 	else if(type == DECREASE){
+    // // 	    int current = 5 * size;
+    // // 	    for(int i = 0; i < size; i++){
+    // // 		ans[i]= create(current,current + 10);
+    // // 		current -= 10;
+    // // 	    }
+    // // 	}
+    // // 	else if(type == SMALL_RANGE){
+    // // 	    for(int i = 0; i < size; i++){
+    // // 		ans[i]= create(-5,5);
+    // // 	    }
+    // // 	}
+    // // 	else{
+    // // 	    ans = new int[0];//empty is default
+    // // 	}
+    // // 	return ans;
+    // // }
+    public static void insertionsort(int[] data, int lo, int hi, int old, int index) {
+    	for(int i = lo+1; i < hi+1; i++) {
+    	    int current = data[i];
+    	    int j = i-1;
+    	    while(j >= lo && current < data[j]) {
+    		if (current == old) {
+    		    index = j;
     		}
-    		System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+    		data[j+1] = data[j];
+    		j--;
     	    }
-    	    System.out.println();
+    	    if (current == old) {
+    		index = j+1;
+    	    }
+    	    data[j+1] = current;
     	}
     }
-    private static final int INCREASE = 0;
-    private static final int DECREASE = 1;
-    private static final int STANDARD = 2;
-    private static final int SMALL_RANGE = 3;
-
-    private static String name(int i){
-	if(i==INCREASE)return "Increassing";
-	if(i==DECREASE)return "Decreassing";
-	if(i==STANDARD)return "Normal Random";
-	if(i==SMALL_RANGE)return "Random with Few Values";
-	return "Error categorizing array";
-
-    }
-
-    private static int create(int min, int max){
-	return min + (int)(Math.random()*(max-min));
-    }
-
-    private static int[]makeArray(int size,int type){
-	int[]ans =new int[size];
-	if(type == STANDARD){
-	    for(int i = 0; i < size; i++){
-		ans[i]= create(-1000000,1000000);
-	    }
-	}
-	else if(type == INCREASE){
-	    int current = -5 * size;
-	    for(int i = 0; i < size; i++){
-		ans[i]= create(current,current + 10);
-		current += 10;
-	    }
-	}
-	else if(type == DECREASE){
-	    int current = 5 * size;
-	    for(int i = 0; i < size; i++){
-		ans[i]= create(current,current + 10);
-		current -= 10;
-	    }
-	}
-	else if(type == SMALL_RANGE){
-	    for(int i = 0; i < size; i++){
-		ans[i]= create(-5,5);
-	    }
-	}
-	else{
-	    ans = new int[0];//empty is default
-	}
-	return ans;
-    }
-    public static void insertionsort(int[] data, int lo, int hi, int old, int index) {
-	for(int i = lo+1; i < hi+1; i++) {
-	    int current = data[i];
-	    int j = i-1;
-	    while(j >= lo && current < data[j]) {
-		if (current == old) {
-		    index = j;
-		}
-		data[j+1] = data[j];
-		j--;
-	    }
-	    if (current == old) {
-		index = j+1;
-	    }
-	    data[j+1] = current;
-	}
-    }
     public static void insertionsort(int[] data) {
-	for(int i = 1; i < data.length; i++) {
-	    int current = data[i];
-	    int j = i-1;
-	    while(j >= 0 && current < data[j]) {
-		data[j+1] = data[j];
-		j--;
-	    }
-	    data[j+1] = current;
-	}
+    	for(int i = 1; i < data.length; i++) {
+    	    int current = data[i];
+    	    int j = i-1;
+    	    while(j >= 0 && current < data[j]) {
+    		data[j+1] = data[j];
+    		j--;
+    	    }
+    	    data[j+1] = current;
+    	}
     }
 	
 
