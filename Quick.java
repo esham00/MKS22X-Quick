@@ -78,10 +78,10 @@ public class Quick {
 	while (value != k) {
 	    //if the index is less than k then set start as the index
 	    if (value < k) {
-		start = value;
+		start = value+1;
 	    } else {
 		//if the index is more than k then set end as the index
-		end = value;
+		end = value-1;
 	    }
 	    //update index
 	    value = partition(data, start, end);
